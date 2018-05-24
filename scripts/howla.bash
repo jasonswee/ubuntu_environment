@@ -8,7 +8,8 @@
 SCRIPT=`basename ${BASH_SOURCE[0]}`
 
 #Initialize variables to default values.
-MAKE_OPT="" #normal  
+MAKE_OPT="" #normal
+SUDO_RUN=false 
 
 #Set fonts for Help.
 Blk='\033[0;30m'     
@@ -32,7 +33,7 @@ NC='\033[0m'
 #Help function
 function HELP {
   echo -e \\n"Help documentation for ${LGrn}${SCRIPT}.${NC}"\\n
-  #echo -e "${LBlu}-t${Yel}  --Input target address in argument${NC}."
+  echo -e "${LBlu}-s${Yel}  --Runs command in sudo${NC}."
   #echo -e "${LBlu}-l${Yel}  --Light Build${NC}."
   #echo -e "${REV}-h${NORM}  --Displays this help message. No further functions are performed."\\n
   #echo -e "Example: ${BOLD}$SCRIPT -a foo -b man -c chu -d bar file.ext${NORM}"\\n
@@ -46,19 +47,20 @@ function HELP {
 #Notice there is no ":" after "h". The leading ":" suppresses error messages from
 #getopts. This is required to get my unrecognized option code to work.
 
-while getopts h FLAG; do
+while getopts "hs:" FLAG; do
   case $FLAG in
-    t)  #set option "r"
-      TARGET_ADDRESS=$OPTARG
-      echo -e "${NC}Recorded IP is ${Yel}$TARGET_ADDRESS${NC}"
-      ;;
+    s)  #set option "s"
+      RUN_THIS="$OPTARG"
+      echo -e "${NC}Recorded command is ${Yel}$RUN_THIS${NC}"
+      SUDO_RUN="true"
+	;;
     l)
       MAKE_OPT="light"
       echo "Light build"
       ;;
     h)  #show help
       HELP
-      ;;
+     ;;
     \?) #unrecognized option - show help
       echo -e \\n"Option -${Red}$OPTARG not allowed.${NC}"
       ;;
@@ -70,8 +72,16 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### End getopts code ###
 clear
 echo 'executing...'
-$1
-spd-say 'Howla'
+if $SUDO_RUN;then
+ #echo true
+ sudo $RUN_THIS
+else
+ #echo false
+ $@
+fi 
+
+source ~/.bashrc
+spd-say -r 50 -i 100 -t child_female 'You are Awesome and Fantastic! ' #Howla
 ### Main loop to process files ###
 
 ### End main loop ###

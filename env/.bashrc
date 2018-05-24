@@ -146,10 +146,12 @@ source ~/catkin_ws/devel/setup.bash
 #export PATH
 
 #Export all the scripts in scripts folder
-cd ~/
+
 PATH="/usr/local/bin/scripts:${PATH}"
 export PATH
 
-export UR5_IP=192.168.0.220 #192.168.10.128 #192.168.26.2
-export UR5_URI=root@192.168.26.21
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+
+export UR_IP=192.168.26.2 #192.168.0.220 #192.168.10.128 #192.168.26.2
+export UR_URI=root@192.168.26.21
 

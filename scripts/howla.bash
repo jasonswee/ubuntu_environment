@@ -50,7 +50,7 @@ function HELP {
 while getopts "hs:" FLAG; do
   case $FLAG in
     s)  #set option "s"
-      RUN_THIS="$OPTARG"
+      RUN_THIS=$@ #"$OPTARG"
       echo -e "${NC}Recorded command is ${Yel}$RUN_THIS${NC}"
       SUDO_RUN="true"
 	;;
@@ -81,7 +81,7 @@ else
 fi 
 
 source ~/.bashrc
-spd-say -r 50 -i 100 -t child_female 'You are Awesome and Fantastic! ' #Howla
+spd-say -r 20 -i 100 -t child_female 'You are Awesome and Fantastic! ' #Howla
 ### Main loop to process files ###
 
 ### End main loop ###

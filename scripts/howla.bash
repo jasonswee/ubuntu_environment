@@ -81,7 +81,7 @@ else
 fi 
 
 source ~/.bashrc
-spd-say -r 20 -i 100 -t child_female 'You are Awesome and Fantastic! ' #Howla
+spd-say -r 20 -i 0 -t child_female 'You are Awesome and Fantastic! ' #Howla
 ### Main loop to process files ###
 
 ### End main loop ###

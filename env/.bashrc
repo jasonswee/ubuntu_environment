@@ -154,4 +154,8 @@ export PKG_CONFIG_PATH=/usr/bin/pkg-config
 
 export UR_IP=192.168.26.2 #192.168.0.220 #192.168.10.128 #192.168.26.2
 export UR_URI=root@192.168.26.21
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda
 
+# added by Miniconda3 installer
+export PATH="/home/jason/miniconda3/bin:$PATH"

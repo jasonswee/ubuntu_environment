@@ -49,8 +49,9 @@
 [plugins]
 [profiles]
   [[default]]
-    background_darkness = 0.64
+    background_darkness = 0.57
     background_image = None
     background_type = transparent
     font = Monospace 14
+    foreground_color = "#ffffff"
     use_system_font = False

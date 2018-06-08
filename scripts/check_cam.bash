@@ -71,6 +71,7 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 
 ### Main loop to process files ###
 v4l2-ctl --list-device
+ls /dev/video*
 ### End main loop ###
 #chmod -R a+rX ~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts/*
 

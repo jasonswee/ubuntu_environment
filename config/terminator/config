@@ -1,6 +1,6 @@
 [global_config]
   suppress_multiple_term_dialog = True
-  title_font = Sans 11
+  title_font = M+ 1m Ultra-Light 12
   title_use_system_font = False
 [keybindings]
 [layouts]
@@ -49,9 +49,10 @@
 [plugins]
 [profiles]
   [[default]]
-    background_darkness = 0.57
+    background_darkness = 0.62
     background_image = None
     background_type = transparent
-    font = Monospace 14
+    font = Inconsolata Medium 14
     foreground_color = "#ffffff"
+    scrollback_infinite = True
     use_system_font = False

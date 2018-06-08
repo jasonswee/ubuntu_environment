@@ -1,0 +1,55 @@
+#Grub customizer, java (for eclipse)
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer ppa:webupd8team/java
+#google
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
+#ROS
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+
+
+sudo apt-get update
+
+sudo apt-get install -y grub-customizer git oracle-java8-installer terminator synaptic ros-kinetic-desktop-full vim
+
+#ROS init
+sudo rosdep init
+rosdep update
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+#ROS dependencies 
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential 
+
+
+cd ~/
+mkdir catkin_ws/
+cd catkin_ws/
+mkdir src/
+cd src/
+
+git clone https://github.com/jasonswee/ubuntu_environment.git
+
+#download eclipse-installer into /opt/eclipse, franz into /opt/franz
+#Franz - https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.18/franz_5.0.0-beta.18_amd64.deb 
+#Eclipse
+cd ~/
+cd /opt/
+mkdir franz/
+sudo dpkg -i /opt/franz/franz_5.0.0-beta.18_amd64.deb
+sudo apt-get install -f
+mkdir eclipse/
+
+cp /opt/eclipse/cpp-oxygen/eclipse/icon.xpm /usr/share/pixmaps/eclipse.xpm
+
+#upload terminator config file at ~/.config/terminator/config
+
+#VREP
+#http://www.coppeliarobotics.com/downloads.html 
+
+#terminator
+#Icon=/usr/share/icons/hicolor/48x48/apps/terminator.png
+sudo nano /usr/share/applications/terminator.desktop

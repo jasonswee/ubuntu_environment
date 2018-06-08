@@ -1,6 +1,6 @@
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 " alternatively, pass a path where Vundle should install bundles
 "let path = '~/some/path/here'
@@ -47,7 +47,7 @@ let ayucolor="dark"
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
-let g:ycm_path_to_python_interpreter = '/home/jason/miniconda3/bin/python3'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_server_use_vim_stdout = 1
 let g:gruvbox_contrast_dark='hard'

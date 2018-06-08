@@ -70,7 +70,7 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### End getopts code ###
 
 ### Main loop to process files ###
-bash ~/V-REP_PRO_EDU_V3_5_0_Linux/vrep.sh&
+bash ~/opt/vrep/V-REP_PRO_EDU_V3_5_0_Linux/vrep.sh&
 ### End main loop ###
 #chmod -R a+rX ~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts/*
 

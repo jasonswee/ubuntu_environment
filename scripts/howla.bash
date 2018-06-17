@@ -81,7 +81,10 @@ else
 fi 
 
 source ~/.bashrc
-spd-say -r 100 -i 0 -t child_female 'You are Awesome and Fantastic! ' #Howla
+( speaker-test -t sine -f 150 )& pid=$! ; sleep 0.3s ; kill -9 $pid
+#( speaker-test -t sine -f 1500 )& pid=$! ; sleep 0.1s ; kill -9 $pid
+clear
+#spd-say -r 100 -i 0 -t child_female 'You are Awesome and Fantastic! ' #Howla
 ### Main loop to process files ###
 
 ### End main loop ###

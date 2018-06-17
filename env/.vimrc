@@ -184,6 +184,10 @@ set guicursor=n-v-c:block-Cursor
 set guicursor+=i:ver100-blockCursor
 set guicursor+=n-v-c:blinkon0
 set guicursor+=i:blinkwait7
+set ruler
+:set number
+
+
 if !has("gui_running")
     hi! Normal ctermbg=NONE guibg=NONE
 endif

@@ -47,8 +47,23 @@ function HELP {
 #Notice there is no ":" after "h". The leading ":" suppresses error messages from
 #getopts. This is required to get my unrecognized option code to work.
 
-while getopts :c:x:th FLAG; do
+while getopts :r:d:c:x:th FLAG; do
   case $FLAG in
+  	r)REMOTE_ADD=$OPTARG
+  		REMOTE_DEST="$REMOTE_ADD:$FILE_PARENT_PATH"
+  		;;
+	d) FILE=$OPTARG
+			cd $FILE
+			FILE_PATH=${PWD/"/home/$USER/"/"~/"}	
+			cd ../
+			FILE_PARENT_PATH=${PWD/"/home/$USER/"/"~/"}	
+			FILE=${FILE_PATH/"$FILE_PARENT_PATH/"/""}	
+				
+			#echo $FILE_PATH
+			#echo $FILE_PARENT_PATH
+			#echo $FILE
+
+			;;
     c)  #set option "r"
       echo -e "${Yel}Compressing...${NC}"
       FILE=$OPTARG
@@ -60,18 +75,21 @@ while getopts :c:x:th FLAG; do
       tar -xzf "$FILE"
       ;;
     t)
-      PACK="tako_smart_cam"
-      FOLDER="~/catkin_ws/src/cr_tako"
+    #FILE=$OPTARG #TODO: SAVE 
+      #PACK="tako_smart_cam"
+      #FOLDER="~/catkin_ws/src/cr_tako"
+      PACK=$FILE
       TAR="$PACK.tar.gz"
-      REMOTE_ADD="cr1@192.168.11.22"
-      REMOTE_DEST="$REMOTE_ADD:~/"
-      cd ~/catkin_ws/src/
-      cd ~/catkin_ws/src/cr_tako
+      #REMOTE_ADD="cr1@192.168.11.22"
+      #REMOTE_DEST="$REMOTE_ADD:~/"
+      #cd ~/catkin_ws/src/
+      #cd ~/catkin_ws/src/cr_tako
+      cd $FILE_PARENT_PATH
       tar -zcpf $TAR $PACK #$FOLDER$PACK
-      scp $TAR "$REMOTE_ADD:$FOLDER"
+      scp $TAR "$REMOTE_ADD:$FILE_PARENT_PATH"
       rm $TAR
       #ssh $REMOTE_ADD "cd $FOLDER; rm -rf $PACK;tar -xzf $TAR; rm -rf $TAR" # ; rm -rf waiterbot ; tar -xzf $TAR ; rm -rf $TAR"
-	  ssh $REMOTE_ADD "cd $FOLDER; rm -rf $PACK;tar -xzf $TAR; rm -rf $TAR" # ; rm -rf waiterbot ; tar -xzf $TAR ; rm -rf $TAR"
+	  ssh $REMOTE_ADD "cd $FILE_PARENT_PATH; rm -rf $PACK;tar -xzf $TAR; rm -rf $TAR" # ; rm -rf waiterbot ; tar -xzf $TAR ; rm -rf $TAR"
       ;;
     h)  #show help
       HELP

@@ -1,0 +1,33 @@
+using namespace ros;
+using namespace std;
+using namespace cv;
+
+
+class SubscribeAndPublish
+{
+	public:
+	  SubscribeAndPublish()
+	  {
+		//Topic you want to publish
+		pub_ = n_.advertise<std_msgs::String>("/CRP_statustakoface", 1);
+
+		//Topic you want to subscribe
+		sub_ = n_.subscribe("/CRP_statustakoface", 1, &SubscribeAndPublish::callback, this);
+	  }
+
+	  void callback(const std_msgs::String& input)
+	  {
+
+		std_msgs::String msg;
+		msg.data = "stopped";
+		//.... do something with the input and generate the output...
+
+		pub_.publish(msg);
+	  }
+
+	private:
+	  ros::NodeHandle n_;
+	  ros::Publisher pub_;
+	  ros::Subscriber sub_;
+
+};//End of class SubscribeAndPublish

@@ -37,13 +37,13 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+#force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -56,32 +56,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-#~/.bashrc
-
-# ANSI color codes
-RS="\[\033[0m\]"    # reset
-HC="\[\033[1m\]"    # hicolor
-UL="\[\033[4m\]"    # underline
-INV="\[\033[7m\]"   # inverse background and foreground
-FBLK="\[\033[30m\]" # foreground black
-FRED="\[\033[31m\]" # foreground red
-FGRN="\[\033[32m\]" # foreground green
-FYEL="\[\033[33m\]" # foreground yellow
-FBLE="\[\033[34m\]" # foreground blue
-FMAG="\[\033[35m\]" # foreground magenta
-FCYN="\[\033[36m\]" # foreground cyan
-FWHT="\[\033[37m\]" # foreground white
-BBLK="\[\033[40m\]" # background black
-BRED="\[\033[41m\]" # background red
-BGRN="\[\033[42m\]" # background green
-BYEL="\[\033[43m\]" # background yellow
-BBLE="\[\033[44m\]" # background blue
-BMAG="\[\033[45m\]" # background magenta
-BCYN="\[\033[46m\]" # background cyan
-BWHT="\[\033[47m\]" # background white
-
 if [ "$color_prompt" = yes ]; then
-    PS1=$HC$BWHT$FBLK'${debian_chroot:+($debian_chroot)}\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -107,6 +83,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -136,26 +115,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-##export TURTLEBOT_3D_SENSOR=kinect
 
 source /opt/ros/kinetic/setup.bash
 source ~/catkin_ws/devel/setup.bash
-#export ROS_HOSTNAME=192.168.0.184
-#export ROS_MASTER_URI=http://192.168.0.130:11311
-#PATH="~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts:${PATH}"
-#export PATH
-
-#Export all the scripts in scripts folder
-
-PATH="/usr/local/bin/scripts:${PATH}"
-export PATH
-
-export PKG_CONFIG_PATH=/usr/bin/pkg-config
-
-export UR_IP=192.168.26.2 #192.168.0.220 #192.168.10.128 #192.168.26.2
-export UR_URI=root@192.168.26.21
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
-export CUDA_HOME=/usr/local/cuda
-
-# added by Miniconda3 installer
-export PATH="/home/jason/miniconda3/bin:$PATH"

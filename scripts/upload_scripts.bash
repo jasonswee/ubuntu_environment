@@ -71,9 +71,10 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 
 ### Main loop to process files ###
 cd ~/
-sudo cp -rf ~/catkin_ws/src/ubuntu_environment/scripts/ /usr/local/bin/
+#sudo cp -rf ~/catkin_ws/src/ubuntu_environment/scripts/ /usr/local/bin/
+sudo cp -rf ~/ubuntu_environment/scripts/ /usr/local/bin/
 ### End main loop ###
-#chmod -R a+rX ~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts/*
+sudo chmod -R a+rX ~/ubuntu_environment/scripts #~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts/*
 
 source ~/.bashrc
 #source $FILE_PTH

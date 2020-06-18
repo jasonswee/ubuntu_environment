@@ -72,11 +72,11 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### Main loop to process files ###
 cd ~/
 FILE=.bashrc
-declare -a arr=('source /opt/ros/indigo/setup.bash'
+declare -a arr=('source /opt/ros/kinetic/setup.bash'
 'source ~/catkin_ws/devel/setup.bash'
 '#export ROS_HOSTNAME=192.168.0.184'
 '#export ROS_MASTER_URI=http://192.168.0.130:11311'
-'PATH="~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts:${PATH}"'
+'PATH="~/ubuntu_environment/scripts:${PATH}"'
 'export PATH')
 
 ## now loop through the above array
@@ -88,7 +88,8 @@ do
 done
 
 ### End main loop ###
-chmod -R a+rX ~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts/*
+#chmod -R a+rX ~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts/*
+chmod -R a+rX ~/ubuntu_environment/scripts/*
 
 source ~/.bashrc
 #source $FILE_PTH

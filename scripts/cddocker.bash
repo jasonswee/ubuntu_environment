@@ -1,4 +1,4 @@
 #! /bin/bash
 
-cd ~/octochef_product/docker/core/
+cd ~/soba_product/docker/core/
 exec bash

@@ -71,6 +71,24 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 
 ### Main loop to process files ###
 cd ~/
+FILE=.bashrc
+declare -a arr=('PATH="~/ubuntu_environment/scripts:${PATH}"'
+'export PATH')
+
+## now loop through the above array
+for i in "${arr[@]}"
+do
+   LINE="$i"
+   grep -qF "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+   # or do whatever with individual element of the array
+done
+
+chmod -R a+rX ~/ubuntu_environment/scripts/*
+
+source ~/.bashrc
+
+### Main loop to process files ###
+cd ~/
 #sudo cp -rf ~/catkin_ws/src/ubuntu_environment/scripts/ /usr/local/bin/
 sudo cp -rf ~/ubuntu_environment/scripts/ /usr/local/bin/
 ### End main loop ###

@@ -8,7 +8,7 @@ set encoding=utf-8
 set wildmenu            " visual autocomplete for command menu
 set clipboard=unnamed
 
-set showmatch           " highlight matching parenthesis 
+set showmatch           " highlight matching parenthesis
 
 set showcmd             " show command in bottom bar
 
@@ -46,14 +46,4 @@ set ruler                           " show line and column number
 syntax on               " syntax highlighting
 set showcmd             " show (partial) command in status line
 
-" strips trailing whitespace at the end of files. this
-" is called on buffer write in the autogroup above.
-function! <SID>StripTrailingWhitespaces()
-    " save last search & cursor position
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
-endfunction
+autocmd BufWritePre * %s/\s\+$//e " strips trailing whitespace when :w is called

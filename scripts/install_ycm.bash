@@ -67,8 +67,10 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### Main loop to process files ###
 
 ### End main loop ###
-echo "Coping .vimrc from /env/ into root"
+echo "Coping .vimrc from /env/ into home"
 cp ../env/.vimrc ~/
+echo "Coping .ycm_extra_conf.py into home"
+cp ../config/ycm/.ycm_extra_conf.py ~/
 echo "Git cloning Vundle"
 if [[ ! -d ~/.vim/bundle/Vundle.vim ]]
 then
@@ -76,11 +78,20 @@ then
 fi
 echo "Installing git plugin"
 vim +PluginInstall +qall
+
+echo "Updating apt-get"
+sudo apt-get update
 echo "Password to install build-essential cmake vim-nox python3-dev"
 sudo apt install -y build-essential cmake vim-nox python3-dev
+echo "Updating apt-get"
+sudo apt-get update
 echo "Password to install mono-complete golang nodejs default-jdk npm"
 sudo apt install -y mono-complete golang nodejs default-jdk npm
+echo "Updating apt-get"
+sudo apt-get update
+
 cd ~/.vim/bundle/YouCompleteMe
 echo "Running YCM python scripts"
 python3 install.py --all
+
 exit 0

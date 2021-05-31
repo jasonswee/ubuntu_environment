@@ -4,28 +4,31 @@
 #Author: Jason
 ######################################################################
 
+# Exits immediately if any command fails
+set -e
+
 #Set Script Name variable
 SCRIPT=`basename ${BASH_SOURCE[0]}`
 
 #Initialize variables to default values.
-MAKE_OPT="" #normal  
+MAKE_OPT="" #normal
 
 #Set fonts for Help.
-Blk='\033[0;30m'     
+Blk='\033[0;30m'
 DGry='\033[1;30m'
-Red='\033[0;31m'     
+Red='\033[0;31m'
 LRed='\033[1;31m'
-Grn='\033[0;32m'     
+Grn='\033[0;32m'
 LGrn='\033[1;32m'
-Bro='\033[0;33m'     
+Bro='\033[0;33m'
 Yel='\033[1;33m'
-Blu='\033[0;34m'     
+Blu='\033[0;34m'
 LBlu='\033[1;34m'
-Pur='\033[0;35m'     
+Pur='\033[0;35m'
 LPur='\033[1;35m'
-Cyn='\033[0;36m'     
+Cyn='\033[0;36m'
 LCyn='\033[1;36m'
-LGry='\033[0;37m'   
+LGry='\033[0;37m'
 Whi='\033[1;37m'
 NC='\033[0m'
 
@@ -70,12 +73,16 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### End getopts code ###
 
 ### Main loop to process files ###
+repo_path_to_scripts_folder="~/ubuntu_environment/scripts"
+path_to_scripts_folder="/usr/local/bin/scripts"
+echo "Setup alias path to <script folder>"
 cd ~/
 FILE=.bashrc
-declare -a arr=('PATH="~/ubuntu_environment/scripts:${PATH}"'
+declare -a arr=("PATH=\"$path_to_scripts_folder:${PATH}\""
 'export PATH')
 
 ## now loop through the above array
+echo "Concatenate the path variables"
 for i in "${arr[@]}"
 do
    LINE="$i"
@@ -83,18 +90,17 @@ do
    # or do whatever with individual element of the array
 done
 
-chmod -R a+rX ~/ubuntu_environment/scripts/*
-
 source ~/.bashrc
 
 ### Main loop to process files ###
+echo "Coping all the scripts into /usr/local/bin/"
 cd ~/
-#sudo cp -rf ~/catkin_ws/src/ubuntu_environment/scripts/ /usr/local/bin/
-sudo cp -rf ~/ubuntu_environment/scripts/ /usr/local/bin/
-### End main loop ###
-sudo chmod -R a+rX ~/ubuntu_environment/scripts #~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts/*
+sudo cp -rf $repo_path_to_scripts_folder $path_to_scripts_folder
 
-source ~/.bashrc
+echo "Setting executable permission for scripts folder"
+sudo chmod -R +x $patht_to_scripts_folder
+
+echo "Please re-source terminal for .bashrc this opened terminal to take effect"
 #source $FILE_PTH
 echo -e "${LGrn}Done.${NC}"
 exit 0

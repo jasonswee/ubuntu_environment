@@ -104,3 +104,6 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+"Allow disable for ycm diagnostics
+let g:ycm_show_diagnostics_ui = 1

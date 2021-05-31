@@ -73,12 +73,12 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### End getopts code ###
 
 ### Main loop to process files ###
-repo_path_to_scripts_folder="~/ubuntu_environment/scripts"
+repo_path_to_scripts_folder="$HOME/ubuntu_environment/scripts"
 path_to_scripts_folder="/usr/local/bin/scripts"
 echo "Setup alias path to <script folder>"
 cd ~/
 FILE=.bashrc
-declare -a arr=("PATH=\"$path_to_scripts_folder:${PATH}\""
+declare -a arr=("PATH=\"$path_to_scripts_folder:\${PATH}\""
 'export PATH')
 
 ## now loop through the above array
@@ -93,12 +93,12 @@ done
 source ~/.bashrc
 
 ### Main loop to process files ###
-echo "Coping all the scripts into /usr/local/bin/"
+echo "Copying all the scripts into /usr/local/bin/"
 cd ~/
 sudo cp -rf $repo_path_to_scripts_folder $path_to_scripts_folder
 
 echo "Setting executable permission for scripts folder"
-sudo chmod -R +x $patht_to_scripts_folder
+sudo chmod -R +x $path_to_scripts_folder
 
 echo "Please re-source terminal for .bashrc this opened terminal to take effect"
 #source $FILE_PTH

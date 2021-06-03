@@ -75,6 +75,7 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### Main loop to process files ###
 repo_path_to_scripts_folder="$HOME/ubuntu_environment/scripts"
 path_to_scripts_folder="/usr/local/bin/scripts"
+path_to_scripts_folder_parent="/usr/local/bin"
 echo "Setup alias path to <script folder>"
 cd ~/
 FILE=.bashrc
@@ -95,7 +96,7 @@ source ~/.bashrc
 ### Main loop to process files ###
 echo "Copying all the scripts into /usr/local/bin/"
 cd ~/
-sudo cp -rf $repo_path_to_scripts_folder $path_to_scripts_folder
+sudo cp -rf $repo_path_to_scripts_folder $path_to_scripts_folder_parent
 
 echo "Setting executable permission for scripts folder"
 sudo chmod -R +x $path_to_scripts_folder

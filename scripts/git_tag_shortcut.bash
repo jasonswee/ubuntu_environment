@@ -70,8 +70,8 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### End getopts code ###
 
 ### Main loop to process files ###
-tagNameMsg = $1
-tagName = $2
+tagNameMsg=$1
+tagName=$2
 # Add tag to current repo
 git tag -m "$tagNameMsg" $tagName
 # Push current repo

@@ -70,7 +70,11 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 ### End getopts code ###
 
 ### Main loop to process files ###
-sudo apt-get install pylint
+sudo apt-get install -y pylint
+
+# pytest
+sudo apt-get -y install python3-pip
+pip3 install pytest
 ### End main loop ###
 
 source ~/.bashrc

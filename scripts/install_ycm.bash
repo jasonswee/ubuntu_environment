@@ -91,6 +91,7 @@ echo "Updating apt-get"
 sudo apt-get update
 
 cd ~/.vim/bundle/YouCompleteMe
+git submodule update --init --recursive
 echo "Running YCM python scripts"
 python3 install.py --all
 

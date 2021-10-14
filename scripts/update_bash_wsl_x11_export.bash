@@ -73,7 +73,8 @@ shift $((OPTIND-1))  #This tells getopts to move on to the next argument.
 
 ### End main loop ###
 #chmod -R a+rX ~/catkin_ws/src/waiterbot/waiterbot/waiterbot_navigation/scripts/*
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+#export DISPLAY=$(grep nameserver /etc/resolv.conf | awk '{print $2}'):0.0
+export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
 export LIBGL_ALWAYS_INDIRECT=1
 source ~/.bashrc
 #source $FILE_PTH
